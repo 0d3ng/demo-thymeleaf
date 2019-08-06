@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Selamat Datang Spring Boot</title>
 </head>
 <body>
 <h2>Belajar Web Template Engine Thymeleaf Menggunakan Spring Boot</h2>
+<h2>List Mahasiswa</h2>
+
+<table>
+    <tr>
+        <th>Nim</th>
+        <th>Nama</th>
+        <th>IPK</th>
+        <th>Jurusan</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="mhs : ${mahasiswas}">
+        <td th:text="${mhs.nim}">&nbsp;</td>
+        <td th:text="${mhs.nama}">&nbsp;</td>
+        <td th:text="${mhs.ipk}">&nbsp;</td>
+        <td th:text="${mhs.jurusan}">&nbsp;</td>
+        <td>
+            <a href="#">Edit</a>&nbsp;|&nbsp;
+            <a href="#">Hapus</a>&nbsp;|&nbsp;
+            <a href="#">Detail</a>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
