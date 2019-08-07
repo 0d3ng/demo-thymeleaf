@@ -9,35 +9,70 @@
 <body>
 <div class="container">
     <h4>Tambah/Edit Mahasiswa</h4>
-    <form method="post" th:object="${mahasiswa}" th:action="@{/mahasiswa/form}">
+    <form method="post" th:object="${mahasiswa}" th:action="@{/mahasiswa/form}" class="needs-validation" novalidate>
         <input type="hidden" th:field="*{id}">
         <div class="form-group">
             <label for="nim" class="col-sm-2 col-form-label">Nim</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="nim" th:field="*{nim}" placeholder="Nim mahasiswa">
+                <input type="text" class="form-control" id="nim" th:field="*{nim}" placeholder="Nim mahasiswa" required>
+                <div class="invalid-feedback">
+                    Nim tidak boleh kosong.
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label for="nama" class="col-sm-2 col-form-label">Nama</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="nama" th:field="*{nama}" placeholder="Nama mahasiswa">
+                <input type="text" class="form-control" id="nama" th:field="*{nama}" placeholder="Nama mahasiswa"
+                       required>
+                <div class="invalid-feedback">
+                    Nama tidak boleh kosong.
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label for="ipk" class="col-sm-2 col-form-label">IPK</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="ipk" th:field="*{ipk}" placeholder="IPK mahasiswa">
+                <input type="number" step="any" class="form-control" id="ipk" th:field="*{ipk}"
+                       placeholder="IPK mahasiswa"
+                       required>
             </div>
         </div>
         <div class="form-group">
             <label for="jurusan" class="col-sm-2 col-form-label">Jurusan</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="jurusan" th:field="*{jurusan}"
-                       placeholder="Jurusan mahasiswa">
+                       placeholder="Jurusan mahasiswa" required>
+                <div class="invalid-feedback">
+                    Jurusan tidak boleh kosong.
+                </div>
             </div>
+        </div>
+        <div class="alert alert-danger" role="alert">
+            <p th:if="${#fields.hasErrors('all')}" th:errors="*{all}">Incorrect date</p>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
 </div>
 </body>
 </html>

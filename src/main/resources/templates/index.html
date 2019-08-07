@@ -20,7 +20,7 @@
             <th>Nama</th>
             <th>IPK</th>
             <th>Jurusan</th>
-            <th style="width: 250px;">Action</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -30,16 +30,16 @@
             <td th:text="${mhs.ipk}">&nbsp;</td>
             <td th:text="${mhs.jurusan}">&nbsp;</td>
             <td>
-                <form method="get" th:action="@{/mahasiswa/form}">
+                <form method="get" th:action="@{/mahasiswa/form}" class="d-inline">
                     <button type="submit" name="id" th:value="${mhs.id}" class="btn btn-link btn-sm">Edit</button>
                 </form>
                 |
-                <form method="post" th:action="@{/mahasiswa/hapus(id=${mhs.id})}">
+                <form method="post" th:action="@{/mahasiswa/hapus(id=${mhs.id})}" class="d-inline">
                     <input type="hidden" name="_method" value="delete"/>
                     <button type="submit" class="btn btn-link btn-sm">Hapus</button>
                 </form>
                 |
-                <form method="get" th:action="@{/mahasiswa/detail_form(id=${mhs.id})}">
+                <form method="get" th:action="@{/mahasiswa/detail_form(id=${mhs.id})}" class="d-inline">
                     <button type="submit" name="id" th:value="${mhs.id}" class="btn btn-link btn-sm">Detail</button>
                 </form>
             </td>
