@@ -16,8 +16,6 @@ public class Mahasiswa {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @NotNull
-    @NotBlank
     private String id;
     @NotNull
     @NotBlank

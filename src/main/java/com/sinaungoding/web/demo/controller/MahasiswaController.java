@@ -1,15 +1,22 @@
 package com.sinaungoding.web.demo.controller;
 
 import com.sinaungoding.web.demo.dao.MahasiswaDao;
+import com.sinaungoding.web.demo.entity.Mahasiswa;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class MahasiswaController {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(MahasiswaController.class.getName());
+
     @Autowired
     private MahasiswaDao mahasiswaDao;
 
@@ -20,6 +27,35 @@ public class MahasiswaController {
 
     @GetMapping("/")
     public String index() {
+        return "redirect:/index";
+    }
+
+    @GetMapping("/mahasiswa/form")
+    public ModelMap tampilFormedit(@RequestParam(required = false, value = "id") Mahasiswa mahasiswa) {
+        if (mahasiswa == null) {
+            mahasiswa = new Mahasiswa();
+        }
+        return new ModelMap().addAttribute("mahasiswa", mahasiswa);
+    }
+
+    @PostMapping("/mahasiswa/form")
+    public String editMahasiswa(@ModelAttribute @Valid Mahasiswa mahasiswa) {
+        LOGGER.info(mahasiswa.toString());
+        mahasiswaDao.save(mahasiswa);
+        return "redirect:/index";
+    }
+
+    @GetMapping("/mahasiswa/detail_form")
+    public ModelMap tampilFormDetail(@RequestParam(required = false, value = "id") Mahasiswa mahasiswa) {
+        if (mahasiswa == null) {
+            mahasiswa = new Mahasiswa();
+        }
+        return new ModelMap().addAttribute("mahasiswa", mahasiswa);
+    }
+
+    @DeleteMapping("/mahasiswa/hapus")
+    public String hapusMahasiswa(@RequestParam(name = "id") String id) {
+        mahasiswaDao.deleteById(id);
         return "redirect:/index";
     }
 }
