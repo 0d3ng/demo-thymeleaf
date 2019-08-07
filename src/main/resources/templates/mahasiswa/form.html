@@ -12,50 +12,46 @@
     <form method="post" th:object="${mahasiswa}" th:action="@{/mahasiswa/form}" class="needs-validation" novalidate>
         <input type="hidden" th:field="*{id}">
         <div class="form-group">
-            <label for="nim" class="col-sm-2 col-form-label">Nim</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="nim" th:field="*{nim}" placeholder="Nim mahasiswa" required>
-                <div class="invalid-feedback">
-                    Nim tidak boleh kosong.
-                </div>
+            <label for="nim" class="col-form-label">Nim</label>
+            <input type="text" class="form-control" id="nim" th:field="*{nim}" placeholder="Nim mahasiswa" required>
+            <div class="invalid-feedback">
+                Nim tidak boleh kosong.
             </div>
         </div>
         <div class="form-group">
-            <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="nama" th:field="*{nama}" placeholder="Nama mahasiswa"
-                       required>
-                <div class="invalid-feedback">
-                    Nama tidak boleh kosong.
-                </div>
+            <label for="nama" class="col-form-label">Nama</label>
+            <input type="text" class="form-control" id="nama" th:field="*{nama}" placeholder="Nama mahasiswa"
+                   required>
+            <div class="invalid-feedback">
+                Nama tidak boleh kosong.
             </div>
         </div>
         <div class="form-group">
-            <label for="ipk" class="col-sm-2 col-form-label">IPK</label>
-            <div class="col-sm-10">
-                <input type="number" step="any" class="form-control" id="ipk" th:field="*{ipk}"
-                       placeholder="IPK mahasiswa"
-                       required>
-            </div>
+            <label for="ipk" class="col-form-label">IPK</label>
+            <input type="number" step="any" class="form-control" id="ipk" th:field="*{ipk}"
+                   placeholder="IPK mahasiswa"
+                   required>
         </div>
         <div class="form-group">
-            <label for="jurusan" class="col-sm-2 col-form-label">Jurusan</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="jurusan" th:field="*{jurusan}"
-                       placeholder="Jurusan mahasiswa" required>
-                <div class="invalid-feedback">
-                    Jurusan tidak boleh kosong.
+            <label for="jurusan" class="col-form-label">Jurusan</label>
+            <input type="text" class="form-control" id="jurusan" th:field="*{jurusan}"
+                   placeholder="Jurusan mahasiswa" required>
+            <div class="invalid-feedback">
+                Jurusan tidak boleh kosong.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+
+        <div th:if="${#fields.hasErrors('all')}">
+            <div class="form-group">
+                <div class="alert alert-warning alert-dismissible fade show">
+                    <label th:errors="*{all}">xxx</label>
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <div class="row mx-md-n5">
-            <div class="alert alert-warning alert-dismissible fade show">
-                <label th:if="${#fields.hasErrors('all')}"
-                       th:errors="*{all}"></label>
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-            </div>
-        </div>
+
+
     </form>
 </div>
 </body>
